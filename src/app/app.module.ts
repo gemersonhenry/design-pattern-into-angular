@@ -8,24 +8,24 @@ import { HttpBase } from './services/http-base.service';
 import { AppService } from './services/app-service.service';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './views/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ViewsModule } from './views/views.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ViewsModule,
   ],
   providers: [
     InstanceService,
     HttpBase,
     AppService,
-    HttpClientModule,
   ],
   bootstrap: [AppComponent]
 })

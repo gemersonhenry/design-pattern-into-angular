@@ -1,44 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
-export interface Comment {
-  id: string;
-  name: string;
-  email: string;
-  body: string;
-}
+import { IComment } from './models.service';
 
 @Injectable()
 export class InstanceService {
 
   // selectedComment
-  private _selectedComment: Comment = {} as Comment;
-  private _selectedCommentSubject: BehaviorSubject<Comment> = new BehaviorSubject({} as Comment);
+  private _selectedComment: IComment = {} as IComment;
+  private _selectedCommentSubject: BehaviorSubject<IComment> = new BehaviorSubject({} as IComment);
 
   // commentList
-  private _commentList: Comment[] = [];
-  private _commentListSubject: BehaviorSubject<Comment[]> = new BehaviorSubject([]);
+  private _commentList: IComment[] = [];
+  private _commentListSubject: BehaviorSubject<IComment[]> = new BehaviorSubject([]);
 
   // selectedComment methods
-  public get selectedComment$(): Observable<Comment> {
+  public get selectedComment$(): Observable<IComment> {
     return this._selectedCommentSubject.asObservable();
   }
-  public setSelectedComment(comment: Comment) {
+  public setSelectedComment(comment: IComment) {
     this._selectedCommentSubject.next(comment);
   }
-  public get selectedComment(): Comment {
+  public get selectedComment(): IComment {
     return this._selectedComment;
   }
 
   // commentList methods
-  public get commentList$(): Observable<Comment[]> {
+  public get commentList$(): Observable<IComment[]> {
     return this._commentListSubject.asObservable();
   }
-  public setCommentList(commentList: Comment[]) {
+  public setCommentList(commentList: IComment[]) {
     this._commentListSubject.next(commentList);
   }
-  public get commentList(): Comment[] {
+  public get commentList(): IComment[] {
     return this._commentList;
   }
 
@@ -48,7 +42,7 @@ export class InstanceService {
   }
 
   public resetInstance() {
-    this.setSelectedComment({} as Comment);
+    this.setSelectedComment({} as IComment);
     this.setCommentList([]);
   }
 }
